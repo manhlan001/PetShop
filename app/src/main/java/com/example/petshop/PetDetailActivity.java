@@ -129,5 +129,3 @@ public class PetDetailActivity extends AppCompatActivity {
         lst.setAdapter(sa);
     }
 }
-
-//Sao ảnh với text bị tách ra thành 2 list?
