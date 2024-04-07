@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -62,13 +63,23 @@ public class PetDetailActivity extends AppCompatActivity {
     private String[][] fish_detail = {
             {"Loại cá: Cá vàng", "Tuổi: 1 năm", "Giới tính: Đa dạng", "Màu sắc: Vàng", "500.000"},
             {"Loại cá: Cá mè", "Tuổi: 6 tháng", "Giới tính: Đa dạng", "Màu sắc: Đa dạng", "1.000.000"},
-            {"Loại cá: Cá betta", "Tuổi: 1 năm", "Giới tính: Đa dạng", "Màu sắc: Đa dạng", "2.000.000"},
-            {"Loại cá: Cá cảnh", "Tuổi: 2 năm", "Giới tính: Đa dạng", "Màu sắc: Đa dạng", "3.000.000"},
-            {"Loại cá: Cá koi", "Tuổi: 3 năm", "Giới tính: Đa dạng", "Màu sắc: Đa dạng", "3.500.000"},
-            {"Loại cá: Cá hồi", "Tuổi: 4 năm", "Giới tính: Đa dạng", "Màu sắc: Hồng", "2.200.000"},
-            {"Loại cá: Cá xanh", "Tuổi: 2 năm", "Giới tính: Đa dạng", "Màu sắc: Xanh", "800.000"}
+            {"Loại cá: Cá Betta", "Tuổi: 1 năm", "Giới tính: Đa dạng", "Màu sắc: Đa dạng", "2.000.000"},
+            {"Loại cá: Cá Guppy", "Tuổi: 2 năm", "Giới tính: Đa dạng", "Màu sắc: Đa dạng", "3.000.000"},
+            {"Loại cá: Cá Koi", "Tuổi: 3 năm", "Giới tính: Đa dạng", "Màu sắc: Đa dạng", "3.500.000"},
+            {"Loại cá: Cá Sặc gấm", "Tuổi: 4 năm", "Giới tính: Đa dạng", "Màu sắc: Hồng", "2.200.000"},
+            {"Loại cá: Cá Ngựa vằn", "Tuổi: 2 năm", "Giới tính: Đa dạng", "Màu sắc: Xanh", "800.000"}
     };
-    //Thêm giá tiền phù hợp cho từng loại
+
+    private int fish_image[] = {
+            R.drawable.fish_vang,
+            R.drawable.fish_me,
+            R.drawable.fish_betta,
+            R.drawable.fish_guppy,
+            R.drawable.fish_koi,
+            R.drawable.fish_sacgam,
+            R.drawable.fish_nguavan
+    };
+
     TextView tv;
     Button btn;
     String[][] pet_detail = {};
@@ -94,11 +105,11 @@ public class PetDetailActivity extends AppCompatActivity {
         }
         else if(title.compareTo("Chó") == 0){
             pet_detail = dog_detail;
-            pet_image = cat_image;
+            pet_image = dog_image;
         }
         else{
             pet_detail = fish_detail;
-            pet_image = cat_image;
+            pet_image = fish_image;
         }
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,5 +138,19 @@ public class PetDetailActivity extends AppCompatActivity {
 
         ListView lst = findViewById(R.id.listViewPet);
         lst.setAdapter(sa);
+
+        lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent it = new Intent(PetDetailActivity.this,AddOrderActivity.class);
+                it.putExtra("image", pet_image[position]);
+                it.putExtra("text1",  pet_detail[position][0]);
+                it.putExtra("text2",  pet_detail[position][1]);
+                it.putExtra("text3",  pet_detail[position][2]);
+                it.putExtra("text4",  pet_detail[position][3]);
+                it.putExtra("PetCost",  pet_detail[position][4]);
+                startActivity(it);
+            }
+        });
     }
 }

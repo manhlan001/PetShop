@@ -38,7 +38,7 @@
     <ListView
         android:id="@+id/listViewPet"
         android:layout_width="350dp"
-        android:layout_height="600dp"
+        android:layout_height="500dp"
         android:layout_margin="10dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
