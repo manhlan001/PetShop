@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PetActivity"
+    android:background="@drawable/back2">
+
+    <TextView
+        android:id="@+id/titleAddPet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pet Shop"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"/>
+
+    <TextView
+        android:id="@+id/titleAddPetTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thêm thú cưng"
+        android:textColor="@color/blue"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/titleAddPet"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"/>
+
+    <EditText
+        android:id="@+id/namePet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:background="@drawable/input_bg"
+        android:fontFamily=""
+        android:hint="Tên loại thú cưng"
+        android:inputType="text"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:textSize="24dp"
+        android:paddingLeft="20dp"
+        android:layout_below="@+id/otypePet"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"/>
+
+    <EditText
+        android:id="@+id/oldPet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/input_bg"
+        android:ems="10"
+        android:inputType="text"
+        android:paddingLeft="20dp"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:hint="Tuổi của thú cưng"
+        android:textSize="24dp"
+        android:layout_below="@+id/namePet"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"/>
+
+    <LinearLayout
+        android:id="@+id/sexPet"
+        android:layout_width="fill_parent"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/oldPet"
+        android:layout_margin="12dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:text="Giới tính"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            />
+
+        <Spinner
+            android:id="@+id/sexPetSpinner"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input_bg"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/editTextColorAndQuantity"
+        android:layout_width="fill_parent"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sexPet"
+        android:layout_margin="12dp">
+
+        <EditText
+            android:id="@+id/colorPet"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input_bg"
+            android:ems="10"
+            android:inputType="text"
+            android:paddingLeft="20dp"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:hint="Màu sắc"
+            android:textSize="24dp"
+            android:layout_centerHorizontal="true"/>
+
+        <EditText
+            android:id="@+id/quantityPet"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input_bg"
+            android:ems="10"
+            android:inputType="number"
+            android:paddingLeft="20dp"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:hint="Số lượng"
+            android:textSize="24dp"
+            android:layout_below="@+id/sexPet"
+            android:layout_centerHorizontal="true"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/otypePet"
+        android:layout_width="fill_parent"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleAddPetTop"
+        android:layout_margin="12dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:text="Chọn loại thú cưng"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            />
+
+        <Spinner
+            android:id="@+id/otypePetSpinner"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input_bg"/>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/pricePet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/input_bg"
+        android:ems="10"
+        android:inputType="number"
+        android:paddingLeft="20dp"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:hint="Giá"
+        android:textSize="24dp"
+        android:layout_below="@+id/editTextColorAndQuantity"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"/>
+
+    <LinearLayout
+        android:id="@+id/imagePet"
+        android:layout_width="fill_parent"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pricePet"
+        android:layout_margin="12dp">
+
+        <ImageView
+            android:id="@+id/imageAddPet"
+            android:layout_width="50dp"
+            android:layout_weight="0.5"
+            android:layout_height="150dp"
+            android:layout_below="@+id/colorPet"
+            android:layout_centerHorizontal="true"/>
+
+        <Button
+            android:id="@+id/buttonAddImage"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:text="Thêm hình ảnh"
+            android:textSize="20dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonAdd"
+        android:layout_width="fill_parent"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imagePet"
+        android:layout_margin="12dp">
+
+        <Button
+            android:id="@+id/buttonAddPet"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:text="Thêm vào danh sách"
+            android:textSize="20dp"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:id="@+id/buttonAddPetBack"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:text="Quay lại"
+            android:textSize="20dp"
+            android:layout_centerHorizontal="true"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

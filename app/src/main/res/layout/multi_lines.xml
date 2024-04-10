@@ -13,8 +13,8 @@
 
         <ImageView
             android:id="@+id/image_pet"
-            android:layout_width="100dp"
-            android:layout_height="100dp"/>
+            android:layout_width="150dp"
+            android:layout_height="150dp"/>
 
         <TextView
             android:id="@+id/line1"
@@ -33,7 +33,7 @@
         <TextView
             android:id="@+id/line2"
             android:layout_width="0dp"
-            android:layout_weight="0.5"
+            android:layout_weight="0.65"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="20sp"/>
@@ -41,7 +41,7 @@
         <TextView
             android:id="@+id/line3"
             android:layout_width="0dp"
-            android:layout_weight="0.5"
+            android:layout_weight="0.35"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="20sp"/>
@@ -58,18 +58,26 @@
             android:id="@+id/line4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
+            android:layout_weight="0.65"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
         <TextView
             android:id="@+id/line5"
             android:layout_width="0dp"
-            android:layout_weight="0.5"
+            android:layout_weight="0.35"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="20sp"/>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/line6"
+        android:layout_width="fill_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="20sp"/>
 
 </LinearLayout>

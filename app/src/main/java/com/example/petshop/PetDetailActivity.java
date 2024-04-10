@@ -1,14 +1,26 @@
 package com.example.petshop;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,75 +28,21 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.model.Model;
+import com.google.android.material.transition.Hold;
+
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
 
 public class PetDetailActivity extends AppCompatActivity {
-    private String[][] cat_detail = {
-            {"Loại mèo: Mèo Ragdoll", "Tuổi: 6 tháng", "Giới tính: Cái", "Màu lông: Trắng", "1.000.000"},
-            {"Loại mèo: Mèo Mướp", "Tuổi: 3 tháng", "Giới tính: Đực", "Màu lông: Xám", "1.500.000"},
-            {"Loại mèo: Mèo Xiêm", "Tuổi: 12 tháng", "Giới tính: Cái", "Màu lông: Trắng", "3.000.000"},
-            {"Loại mèo: Mèo tai cụp", "Tuổi: 6 tháng", "Giới tính: Đực", "Màu lông: Trắng và xám", "2.000.000"},
-            {"Loại mèo: Mèo Maine Coon", "Tuổi: 18 tháng", "Giới tính: Cái", "Màu lông: Xám đen", "1.200.000"},
-            {"Loại mèo: Mèo Bengal", "Tuổi: 9 tháng", "Giới tính: Đực", "Màu lông: Cam đốm", "2.300.000"},
-            {"Loại mèo: Mèo Sphynx", "Tuổi: 8 tháng", "Giới tính: Cái", "Không lông", "2.600.000"},
-    };
-
-    private int cat_image[] = {
-            R.drawable.cat_ragdoll,
-            R.drawable.cat_muop,
-            R.drawable.cat_xiem,
-            R.drawable.cat_taicup,
-            R.drawable.cat_mainecoon,
-            R.drawable.cat_bengal,
-            R.drawable.cat_sphynx
-    };
-
-    private String[][] dog_detail = {
-            {"Loại chó: Chó Husky", "Tuổi: 2 năm", "Giới tính: Đực", "Màu lông: Xám và Trắng", "1.000.000"},
-            {"Loại chó: Chó Poodle", "Tuổi: 1 năm", "Giới tính: Cái", "Màu lông: Trắng", "1.500.000"},
-            {"Loại chó: Chó Corgi", "Tuổi: 3 năm", "Giới tính: Đực", "Màu lông: Vàng và Trắng", "3.000.000"},
-            {"Loại chó: Chó Golden Retriever", "Tuổi: 4 năm", "Giới tính: Cái", "Màu lông: Vàng", "2.000.000"},
-            {"Loại chó: Chó Labrador Retriever", "Tuổi: 5 năm", "Giới tính: Cái", "Màu lông: Đen", "1.200.000"},
-            {"Loại chó: Chó Bulldog", "Tuổi: 2 năm", "Giới tính: Đực", "Màu lông: Nâu", "2.300.000"},
-            {"Loại chó: Chó Beagle", "Tuổi: 3 năm", "Giới tính: Đực", "Màu lông: Trắng và Nâu", "3.500.000"},
-    };
-
-    private int dog_image[] = {
-            R.drawable.dog_husky,
-            R.drawable.dog_poodle,
-            R.drawable.dog_corgi,
-            R.drawable.dog_golden,
-            R.drawable.dog_labrador,
-            R.drawable.dog_bull,
-            R.drawable.dog_beagle
-    };
-
-    private String[][] fish_detail = {
-            {"Loại cá: Cá vàng", "Tuổi: 1 năm", "Giới tính: Đa dạng", "Màu sắc: Vàng", "500.000"},
-            {"Loại cá: Cá mè", "Tuổi: 6 tháng", "Giới tính: Đa dạng", "Màu sắc: Đa dạng", "1.000.000"},
-            {"Loại cá: Cá Betta", "Tuổi: 1 năm", "Giới tính: Đa dạng", "Màu sắc: Đa dạng", "2.000.000"},
-            {"Loại cá: Cá Guppy", "Tuổi: 2 năm", "Giới tính: Đa dạng", "Màu sắc: Đa dạng", "3.000.000"},
-            {"Loại cá: Cá Koi", "Tuổi: 3 năm", "Giới tính: Đa dạng", "Màu sắc: Đa dạng", "3.500.000"},
-            {"Loại cá: Cá Sặc gấm", "Tuổi: 4 năm", "Giới tính: Đa dạng", "Màu sắc: Hồng", "2.200.000"},
-            {"Loại cá: Cá Ngựa vằn", "Tuổi: 2 năm", "Giới tính: Đa dạng", "Màu sắc: Xanh", "800.000"}
-    };
-
-    private int fish_image[] = {
-            R.drawable.fish_vang,
-            R.drawable.fish_me,
-            R.drawable.fish_betta,
-            R.drawable.fish_guppy,
-            R.drawable.fish_koi,
-            R.drawable.fish_sacgam,
-            R.drawable.fish_nguavan
-    };
-
     TextView tv;
-    Button btn;
-    String[][] pet_detail = {};
-    int[] pet_image = {};
-    ArrayList list;
+    Button btn_back, btn_addPet;
+    String pet_title;
+    ArrayList list, list_cat, list_dog, list_fish;
     HashMap<String, Object> item;
     SimpleAdapter sa;
 
@@ -93,64 +51,184 @@ public class PetDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_detail);
 
-        tv = findViewById(R.id.textViewPetDetail);
-        btn = findViewById(R.id.buttonPetBack);
+        tv = findViewById(R.id.titlePetDetailTop);
+        btn_back = findViewById(R.id.buttonPetBack);
+        btn_addPet = findViewById(R.id.buttonAddPet);
         Intent it = getIntent();
         String title = it.getStringExtra("title");
         tv.setText(title);
 
-        if(title.compareTo("Mèo") == 0){
-            pet_detail = cat_detail;
-            pet_image = cat_image;
+        list_cat = new ArrayList();
+        list_dog = new ArrayList();
+        list_fish = new ArrayList();
+
+        // Tạo đối tượng Database
+        Database database = new Database(this, "PetShop", null, 1);
+
+        // Lấy danh sách tất cả các động vật cưng từ cơ sở dữ liệu
+        ArrayList<Pet> petList = database.getAllPets();
+
+        // Xử lý danh sách để tạo pet_detail và pet_image
+        for (Pet pet : petList) {
+            String otype = pet.getOtype();
+            if ("Mèo".equals(otype)) {
+                item = new HashMap<String, Object>();
+                item.put("id", pet.getId());
+                item.put("image_pet", pet.getImagePet());
+                item.put("line1", "Loại " + otype + ": " + pet.getNamePet());
+                item.put("line2", "Tuổi: " + pet.getOld());
+                item.put("line3", "Giới tính: " + pet.getSex());
+                item.put("line4", "Màu sắc: " + pet.getColor());
+                item.put("line5", "Số lượng: " + pet.getQuantity());
+                item.put("line6", "Giá: " + String.valueOf(pet.getPrice()) + "đ");
+                list_cat.add(item);
+            } else if ("Chó".equals(otype)) {
+                item = new HashMap<String, Object>();
+                item.put("id", pet.getId());
+                item.put("image_pet", pet.getImagePet());
+                item.put("line1", "Loại " + otype + ": " + pet.getNamePet());
+                item.put("line2", "Tuổi: " + pet.getOld());
+                item.put("line3", "Giới tính: " + pet.getSex());
+                item.put("line4", "Màu sắc: " + pet.getColor());
+                item.put("line5", "Số lượng: " + pet.getQuantity());
+                item.put("line6", "Giá: " + String.valueOf(pet.getPrice()) + "đ");
+                list_dog.add(item);
+            } else if ("Cá".equals(otype)) {
+                item = new HashMap<String, Object>();
+                item.put("id", pet.getId());
+                item.put("image_pet", pet.getImagePet());
+                item.put("line1", "Loại " + otype + ": " + pet.getNamePet());
+                item.put("line2", "Tuổi: " + pet.getOld());
+                item.put("line3", "Giới tính: " + pet.getSex());
+                item.put("line4", "Màu sắc: " + pet.getColor());
+                item.put("line5", "Số lượng: " + pet.getQuantity());
+                item.put("line6", "Giá: " + String.valueOf(pet.getPrice()) + "đ");
+                list_fish.add(item);
+            }
         }
-        else if(title.compareTo("Chó") == 0){
-            pet_detail = dog_detail;
-            pet_image = dog_image;
+
+        list = new ArrayList();
+
+        if (title.compareTo("Mèo") == 0) {
+            list = list_cat;
+            pet_title = "Mèo";
+        } else if (title.compareTo("Chó") == 0) {
+            list = list_dog;
+            pet_title = "Chó";
+        } else {
+            list= list_fish;
+            pet_title = "Cá";
         }
-        else{
-            pet_detail = fish_detail;
-            pet_image = fish_image;
-        }
-        btn.setOnClickListener(new View.OnClickListener() {
+
+        btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(PetDetailActivity.this, PetActivity.class));
             }
         });
 
-        list = new ArrayList();
-        for(int i = 0; i < pet_detail.length; i++){
-            item = new HashMap<String, Object>();
-            item.put("image_pet", pet_image[i]);
-            item.put("line1", pet_detail[i][0]);
-            item.put("line2", pet_detail[i][1]);
-            item.put("line3", pet_detail[i][2]);
-            item.put("line4", pet_detail[i][3]);
-            item.put("line5", "Giá: " + pet_detail[i][4] + "đ");
-            list.add(item);
+        if (list.isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Vui lòng thêm các loại thú cưng cho cửa hàng", Toast.LENGTH_LONG).show();
+        } else {
+            CustomAdapter sa = new CustomAdapter(this, R.layout.multi_lines, list);
+
+            ListView lst = findViewById(R.id.listViewPet);
+            lst.setAdapter(sa);
+
+            lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent it = new Intent(PetDetailActivity.this, Delete_Custom_Activity.class);
+                    it.putExtra("pet_title", pet_title);
+                    HashMap<String, Object> selectedItem = (HashMap<String, Object>) parent.getItemAtPosition(position);
+                    it.putExtra("id", (int) selectedItem.get("id"));
+                    it.putExtra("image", (byte[]) selectedItem.get("image_pet"));
+                    it.putExtra("text1", selectedItem.get("line1").toString());
+                    it.putExtra("text2", selectedItem.get("line2").toString());
+                    it.putExtra("text3", selectedItem.get("line3").toString());
+                    it.putExtra("text4", selectedItem.get("line4").toString());
+                    it.putExtra("text5", selectedItem.get("line5").toString());
+                    it.putExtra("PetPrice", selectedItem.get("line6").toString());
+                    startActivity(it);
+                }
+            });
         }
 
-        sa = new SimpleAdapter(this,list,
-                R.layout.multi_lines,
-                new String[]{"image_pet", "line1", "line2", "line3", "line4", "line5"},
-                new int[]{R.id.image_pet, R.id.line1, R.id.line2, R.id.line3, R.id.line4, R.id.line5}
-                );
-
-        ListView lst = findViewById(R.id.listViewPet);
-        lst.setAdapter(sa);
-
-        lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        btn_addPet.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent it = new Intent(PetDetailActivity.this,AddOrderActivity.class);
-                it.putExtra("image", pet_image[position]);
-                it.putExtra("text1",  pet_detail[position][0]);
-                it.putExtra("text2",  pet_detail[position][1]);
-                it.putExtra("text3",  pet_detail[position][2]);
-                it.putExtra("text4",  pet_detail[position][3]);
-                it.putExtra("PetCost",  pet_detail[position][4]);
+            public void onClick(View v) {
+                Intent it = new Intent(PetDetailActivity.this, AddPetActivity.class);
+                it.putExtra("pet_title", pet_title);
                 startActivity(it);
             }
         });
+    }
+
+    private Bitmap byteToBitmap(byte[] byteArray) {
+        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+    }
+
+    private class CustomAdapter extends BaseAdapter{
+        private Context context;
+        private int layout;
+        private ArrayList list = new ArrayList();
+
+        public CustomAdapter(Context context, int layout, ArrayList list){
+            this.context = context;
+            this.layout = layout;
+            this.list = list;
+        }
+
+        private class ViewHolder{
+            ImageView image_pet;
+            TextView line1, line2, line3, line4, line5, line6;
+        }
+        @Override
+        public int getCount() {
+            return list.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return list.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder holder;
+            if (convertView == null) {
+                holder = new ViewHolder();
+                LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = inflater.inflate(layout, null);
+                holder.image_pet = convertView.findViewById(R.id.image_pet);
+                holder.line1 = convertView.findViewById(R.id.line1);
+                holder.line2 = convertView.findViewById(R.id.line2);
+                holder.line3 = convertView.findViewById(R.id.line3);
+                holder.line4 = convertView.findViewById(R.id.line4);
+                holder.line5 = convertView.findViewById(R.id.line5);
+                holder.line6 = convertView.findViewById(R.id.line6);
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+
+            HashMap<String, Object> item = (HashMap<String, Object>) list.get(position);
+            byte[] imageByte = (byte[]) item.get("image_pet");
+            Bitmap bitmap = byteToBitmap(imageByte);
+            holder.image_pet.setImageBitmap(bitmap);
+            holder.line1.setText(item.get("line1").toString());
+            holder.line2.setText(item.get("line2").toString());
+            holder.line3.setText(item.get("line3").toString());
+            holder.line4.setText(item.get("line4").toString());
+            holder.line5.setText(item.get("line5").toString());
+            holder.line6.setText(item.get("line6").toString());
+
+            return convertView;
+        }
     }
 }

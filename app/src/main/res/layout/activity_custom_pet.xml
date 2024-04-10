@@ -8,7 +8,7 @@
     android:background="@drawable/back2">
 
     <TextView
-        android:id="@+id/titleAddOrder"
+        android:id="@+id/titleCustomPet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Pet Shop"
@@ -19,43 +19,53 @@
         android:layout_margin="12dp"/>
 
     <TextView
-        android:id="@+id/titleAddOrderTop"
+        android:id="@+id/titleCustomPetTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Thông tin thú cưng"
+        android:text="Chỉnh sửa thông tin"
         android:textColor="@color/blue"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:layout_below="@+id/titleAddOrder"
+        android:layout_below="@+id/titleCustomPet"
         android:layout_centerHorizontal="true"
         android:layout_margin="12dp"/>
 
     <ImageView
-        android:id="@+id/imagePet"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_below="@+id/titleAddOrderTop"
+        android:id="@+id/imageCustomPet"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_below="@+id/titleCustomPetTop"
         android:layout_centerHorizontal="true"
         android:layout_margin="12dp"/>
 
+    <EditText
+        android:id="@+id/CustomPettext1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageCustomPet"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"/>
+
     <LinearLayout
-        android:id="@+id/PetDetail1"
+        android:id="@+id/PetDetailCustomPet1"
         android:layout_width="fill_parent"
         android:orientation="horizontal"
         android:weightSum="1"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imagePet"
+        android:layout_below="@+id/CustomPettext1"
         android:layout_margin="12dp">
-        <TextView
-            android:id="@+id/text1"
+        <EditText
+            android:id="@+id/CustomPettext2"
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="20sp"/>
 
-        <TextView
-            android:id="@+id/text2"
+        <EditText
+            android:id="@+id/CustomPettext3"
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
@@ -65,24 +75,24 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/PetDetail2"
+        android:id="@+id/PetDetailCustomPet2"
         android:layout_width="fill_parent"
         android:orientation="horizontal"
         android:weightSum="1"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/PetDetail1"
+        android:layout_below="@+id/PetDetailCustomPet1"
         android:layout_margin="12dp">
 
-        <TextView
-            android:id="@+id/text3"
+        <EditText
+            android:id="@+id/CustomPettext4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/text4"
+        <EditText
+            android:id="@+id/CustomPettext5"
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
@@ -90,16 +100,15 @@
             android:textSize="20sp"/>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/PetCost"
+    <EditText
+        android:id="@+id/CustomPetCost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/blue"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_below="@+id/PetDetail2"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="12dp"/>
+        android:layout_below="@+id/PetDetailCustomPet2"
+        android:layout_centerHorizontal="true" />
 
     <LinearLayout
         android:id="@+id/PetButton"
@@ -107,18 +116,17 @@
         android:orientation="horizontal"
         android:weightSum="1"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/PetCost"
-        android:layout_margin="12dp">
+        android:layout_below="@+id/CustomPetCost">
 
         <Button
-            android:id="@+id/buttonAddtoCart"
+            android:id="@+id/buttonCustomPet"
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
-            android:text="Thêm vào giỏ hàng"/>
+            android:text="Chỉnh sửa"/>
 
         <Button
-            android:id="@+id/buttonBack"
+            android:id="@+id/buttonBackCustomPet"
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
