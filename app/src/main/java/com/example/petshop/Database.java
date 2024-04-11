@@ -21,7 +21,7 @@ public class Database extends SQLiteOpenHelper {
         String qry1 = "create table users(username text, email text, password text)";
         db.execSQL(qry1);
 
-        String qry2 = "create table pets(id int primary key, imagePet blob, namePet text, old text, sex text, color text, quantity int, price text, otype text)";
+        String qry2 = "create table pets(imagePet blob, namePet text primary key, old text, sex text, color text, quantity int, price text, otype text)";
         db.execSQL(qry2);
     }
     @Override
@@ -53,9 +53,8 @@ public class Database extends SQLiteOpenHelper {
         return  result;
     }
 
-    public void AddPet(int id, byte[] imagePet, String namePet, String old, String sex, String color, int quantity, float price, String otype){
+    public void AddPet(byte[] imagePet, String namePet, String old, String sex, String color, int quantity, float price, String otype){
         ContentValues cv = new ContentValues();
-        cv.put("id", id);
         cv.put("imagePet", imagePet);
         cv.put("namePet", namePet);
         cv.put("old", old);
@@ -74,7 +73,6 @@ public class Database extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM pets", null);
         if (cursor != null) {
-            int columnIndexId = cursor.getColumnIndex("id");
             int columnIndexImagePet = cursor.getColumnIndex("imagePet");
             int columnIndexNamePet = cursor.getColumnIndex("namePet");
             int columnIndexOld = cursor.getColumnIndex("old");
@@ -85,7 +83,6 @@ public class Database extends SQLiteOpenHelper {
             int columnIndexOType = cursor.getColumnIndex("otype");
 
             while (cursor.moveToNext()) {
-                int id = cursor.getInt(columnIndexId);
                 byte[] imagePet = cursor.getBlob(columnIndexImagePet);
                 String namePet = cursor.getString(columnIndexNamePet);
                 String old = cursor.getString(columnIndexOld);
@@ -96,7 +93,7 @@ public class Database extends SQLiteOpenHelper {
                 String otype = cursor.getString(columnIndexOType);
 
                 // Create a new Pet object from the current column data
-                Pet pet = new Pet(id, imagePet, namePet, old, sex, color, quantity, price, otype);
+                Pet pet = new Pet(imagePet, namePet, old, sex, color, quantity, price, otype);
 
                 // Add the pet to the list
                 petList.add(pet);

@@ -52,17 +52,17 @@ public class CustomPetActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
-        int id = intent.getIntExtra("id", 0);
+        String id = intent.getStringExtra("Id_pet");
         byte[] image_pet = intent.getByteArrayExtra("image");
         assert image_pet != null;
         Bitmap bitmap = BitmapFactory.decodeByteArray(image_pet, 0, image_pet.length);
         image.setImageBitmap(bitmap);
-        text1.setText(intent.getStringExtra("text1"));
-        text2.setText(intent.getStringExtra("text2"));
-        text3.setText(intent.getStringExtra("text3"));
-        text4.setText(intent.getStringExtra("text4"));
-        text5.setText(intent.getStringExtra("text5"));
-        PetCost.setText(intent.getStringExtra("PetPrice"));
+        text1.setHint(intent.getStringExtra("text1"));
+        text2.setHint(intent.getStringExtra("text2"));
+        text3.setHint(intent.getStringExtra("text3"));
+        text4.setHint(intent.getStringExtra("text4"));
+        text5.setHint(intent.getStringExtra("text5"));
+        PetCost.setHint(intent.getStringExtra("PetPrice"));
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,18 +85,36 @@ public class CustomPetActivity extends AppCompatActivity {
         btn_custom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String name = text1.getText().toString();
+                String old = text2.getText().toString();
+                String sex = text3.getText().toString();
+                String color = text4.getText().toString();
+                String priceText = PetCost.getText().toString();
+                String quantityText = text5.getText().toString();
                 byte[] image_customPet = ImageViewToByte(image);
                 ContentValues cv = new ContentValues();
                 cv.put("imagePet", image_customPet);
-                cv.put("namePet", text1.getText().toString());
-                cv.put("old", text2.getText().toString());
-                cv.put("sex", text3.getText().toString());
-                cv.put("color", text4.getText().toString());
-                cv.put("quantity", text5.getText().toString());
-                cv.put("price", PetCost.getText().toString());
-
+                if (!old.isEmpty()) {
+                    cv.put("old", old);
+                }
+                if (!sex.isEmpty()) {
+                    cv.put("sex", sex);
+                }
+                if (!color.isEmpty()) {
+                    cv.put("color", color);
+                }
+                if (!quantityText.isEmpty()) {
+                    int quantity = Integer.parseInt(quantityText);
+                    cv.put("quantity", quantity);
+                }
+                if (!priceText.isEmpty()) {
+                    Float price = Float.parseFloat(priceText);
+                    cv.put("price", price);
+                }
                 sqLiteDatabase = database.getWritableDatabase();
-                long recustom = sqLiteDatabase.update("pets", cv, "id" + id, null);
+                String whereClause = "namePet = ?";
+                String[] whereArgs = {id};
+                long recustom = sqLiteDatabase.update("pets", cv, whereClause, whereArgs);
                 if(recustom != -1){
                     Toast.makeText(getApplicationContext(), "Cập nhật thành công", Toast.LENGTH_LONG).show();
                     Intent it = new Intent(CustomPetActivity.this, PetDetailActivity.class);

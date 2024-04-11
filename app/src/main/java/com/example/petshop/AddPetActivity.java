@@ -41,7 +41,6 @@ public class AddPetActivity extends AppCompatActivity {
     private final int GALLERY_REQ_CODE = 1000;
     private final String[] otypePet = {"Mèo", "Chó", "Cá"};
     private final String[] sexPet = {"Đực","Cái"};
-    int id = 0;
     Spinner otypePet_spinner;
     Spinner sexPet_spinner;
     EditText edname, edold, edcolor, edprice, edquantity;
@@ -110,7 +109,7 @@ public class AddPetActivity extends AppCompatActivity {
                     try {
                         Float price = Float.parseFloat(priceText);
                         int quantity = Integer.parseInt(quantityText);
-                        db.AddPet(id, image, name, old, sexPet_spinner.getSelectedItem().toString(), color, quantity, price, otypePet_spinner.getSelectedItem().toString());
+                        db.AddPet(image, name, old, sexPet_spinner.getSelectedItem().toString(), color, quantity, price, otypePet_spinner.getSelectedItem().toString());
                         Toast.makeText(getApplicationContext(), "Đã thêm vào danh sách", Toast.LENGTH_LONG).show();
                         Intent it = new Intent(AddPetActivity.this,PetDetailActivity.class);
                         it.putExtra("title", title);

@@ -44,8 +44,6 @@ public class PetDetailActivity extends AppCompatActivity {
     String pet_title;
     ArrayList list, list_cat, list_dog, list_fish;
     HashMap<String, Object> item;
-    SimpleAdapter sa;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +71,7 @@ public class PetDetailActivity extends AppCompatActivity {
             String otype = pet.getOtype();
             if ("Mèo".equals(otype)) {
                 item = new HashMap<String, Object>();
-                item.put("id", pet.getId());
+                item.put("Id_pet", pet.getNamePet());
                 item.put("image_pet", pet.getImagePet());
                 item.put("line1", "Loại " + otype + ": " + pet.getNamePet());
                 item.put("line2", "Tuổi: " + pet.getOld());
@@ -84,7 +82,7 @@ public class PetDetailActivity extends AppCompatActivity {
                 list_cat.add(item);
             } else if ("Chó".equals(otype)) {
                 item = new HashMap<String, Object>();
-                item.put("id", pet.getId());
+                item.put("Id_pet", pet.getNamePet());
                 item.put("image_pet", pet.getImagePet());
                 item.put("line1", "Loại " + otype + ": " + pet.getNamePet());
                 item.put("line2", "Tuổi: " + pet.getOld());
@@ -95,7 +93,7 @@ public class PetDetailActivity extends AppCompatActivity {
                 list_dog.add(item);
             } else if ("Cá".equals(otype)) {
                 item = new HashMap<String, Object>();
-                item.put("id", pet.getId());
+                item.put("Id_pet", pet.getNamePet());
                 item.put("image_pet", pet.getImagePet());
                 item.put("line1", "Loại " + otype + ": " + pet.getNamePet());
                 item.put("line2", "Tuổi: " + pet.getOld());
@@ -141,7 +139,7 @@ public class PetDetailActivity extends AppCompatActivity {
                     Intent it = new Intent(PetDetailActivity.this, Delete_Custom_Activity.class);
                     it.putExtra("pet_title", pet_title);
                     HashMap<String, Object> selectedItem = (HashMap<String, Object>) parent.getItemAtPosition(position);
-                    it.putExtra("id", (int) selectedItem.get("id"));
+                    it.putExtra("Id_pet", selectedItem.get("Id_pet").toString());
                     it.putExtra("image", (byte[]) selectedItem.get("image_pet"));
                     it.putExtra("text1", selectedItem.get("line1").toString());
                     it.putExtra("text2", selectedItem.get("line2").toString());

@@ -86,9 +86,11 @@
         <Spinner
             android:id="@+id/sexPetSpinner"
             android:layout_width="0dp"
-            android:layout_weight="0.5"
             android:layout_height="wrap_content"
-            android:background="@drawable/input_bg"/>
+            android:layout_weight="0.5"
+
+            android:background="@drawable/input_bg"
+            android:backgroundTint="#2196F3" />
 
     </LinearLayout>
 
@@ -157,9 +159,10 @@
         <Spinner
             android:id="@+id/otypePetSpinner"
             android:layout_width="0dp"
-            android:layout_weight="0.5"
             android:layout_height="wrap_content"
-            android:background="@drawable/input_bg"/>
+            android:layout_weight="0.5"
+            android:background="@drawable/input_bg"
+            android:backgroundTint="#03A9F4" />
     </LinearLayout>
 
     <EditText

@@ -1,6 +1,7 @@
 package com.example.petshop;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +21,8 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.HashMap;
 
 public class Delete_Custom_Activity extends AppCompatActivity {
+    SQLiteDatabase sqLiteDatabase;
+    Database database;
     TextView text1, text2, text3, text4, text5, PetCost;
     Button btn_back, btn_custom, btn_delete;
     ImageView image;
@@ -26,6 +30,8 @@ public class Delete_Custom_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_custom);
+
+        database = new Database(this, "PetShop", null, 1);
 
         image = findViewById(R.id.imagePet);
 
@@ -42,7 +48,7 @@ public class Delete_Custom_Activity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String title = intent.getStringExtra("pet_title");
-        int id = intent.getIntExtra("id", 0);
+        String id = intent.getStringExtra("Id_pet");
         byte[] image_pet = intent.getByteArrayExtra("image");
         assert image_pet != null;
         Bitmap bitmap = BitmapFactory.decodeByteArray(image_pet, 0, image_pet.length);
@@ -63,12 +69,12 @@ public class Delete_Custom_Activity extends AppCompatActivity {
             }
         });
 
-        /*btn_custom.setOnClickListener(new View.OnClickListener() {
+        btn_custom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent it = new Intent(Delete_Custom_Activity.this, CustomPetActivity.class);
                 it.putExtra("title", title);
-                it.putExtra("id", id);
+                it.putExtra("Id_pet", id);
                 it.putExtra("image", intent.getByteArrayExtra("image"));
                 it.putExtra("text1", intent.getStringExtra("text1"));
                 it.putExtra("text2", intent.getStringExtra("text2"));
@@ -78,6 +84,24 @@ public class Delete_Custom_Activity extends AppCompatActivity {
                 it.putExtra("PetPrice", intent.getStringExtra("PetPrice"));
                 startActivity(it);
             }
-        });*/
+        });
+
+        btn_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String whereClause = "namePet = ?";
+                String[] whereArgs = {id};
+                sqLiteDatabase = database.getWritableDatabase();
+                long redelete = sqLiteDatabase.delete("pets", whereClause, whereArgs);
+                if(redelete != -1){
+                    Toast.makeText(getApplicationContext(), "Xóa thành công", Toast.LENGTH_LONG).show();
+                    Intent it = new Intent(Delete_Custom_Activity.this, PetDetailActivity.class);
+                    it.putExtra("title", title);
+                    startActivity(it);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Chưa xóa thành công", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 }

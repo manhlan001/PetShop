@@ -27,8 +27,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         android:layout_below="@+id/titleDeleteAndCustomPet"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="12dp"/>
+        android:layout_centerHorizontal="true" />
 
     <ImageView
         android:id="@+id/imagePet"

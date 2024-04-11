@@ -1,7 +1,6 @@
 package com.example.petshop;
 
 public class Pet {
-    private int id;
     private byte[] imagePet;
     private String namePet;
     private String old;
@@ -11,8 +10,7 @@ public class Pet {
     private String price;
     private String otype;
 
-    public Pet(int id, byte[] imagePet, String namePet, String old, String sex, String color, String quantity, String price, String otype) {
-        this.id = id;
+    public Pet(byte[] imagePet, String namePet, String old, String sex, String color, String quantity, String price, String otype) {
         this.imagePet = imagePet;
         this.namePet = namePet;
         this.old = old;
@@ -22,10 +20,6 @@ public class Pet {
         this.price = price;
         this.otype = otype;
     }
-    public int getId() { return id; }
-
-    public void setId(int id) { this.id = id; }
-
     public byte[] getImagePet() {
         return imagePet;
     }
