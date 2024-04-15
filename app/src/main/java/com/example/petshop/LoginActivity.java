@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
             /*String username = edUsername.getText().toString();
             String password = edPassword.getText().toString();
             Database db = new Database(getApplicationContext(), "PetShop", null, 1);
-            if(username.length() == 0 || password.length() == 0) {
+            if(username.isEmpty() || password.isEmpty()) {
                 Toast.makeText(getApplicationContext(), "Chưa nhập đầy đủ thông tin", Toast.LENGTH_LONG).show();
             } else {
                 if(db.Login(username, password) == 1){

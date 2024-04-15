@@ -43,11 +43,11 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        CardView cskh = findViewById(R.id.cardCSKH);
-        cskh.setOnClickListener(new View.OnClickListener() {
+        CardView changePassword = findViewById(R.id.cardChangePassword);
+        changePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, CSKHActivity.class));
+                startActivity(new Intent(HomeActivity.this, ChangePasswordActivity.class));
             }
         });
     }

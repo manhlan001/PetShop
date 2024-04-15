@@ -1,5 +1,7 @@
 package com.example.petshop;
 
+import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -13,11 +15,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Delete_Custom_Activity extends AppCompatActivity {
@@ -89,18 +93,36 @@ public class Delete_Custom_Activity extends AppCompatActivity {
         btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String whereClause = "namePet = ?";
-                String[] whereArgs = {id};
-                sqLiteDatabase = database.getWritableDatabase();
-                long redelete = sqLiteDatabase.delete("pets", whereClause, whereArgs);
-                if(redelete != -1){
-                    Toast.makeText(getApplicationContext(), "Xóa thành công", Toast.LENGTH_LONG).show();
-                    Intent it = new Intent(Delete_Custom_Activity.this, PetDetailActivity.class);
-                    it.putExtra("title", title);
-                    startActivity(it);
-                } else {
-                    Toast.makeText(getApplicationContext(), "Chưa xóa thành công", Toast.LENGTH_LONG).show();
+                String quantityText = intent.getStringExtra("quantity");
+                int quantity = Integer.parseInt(quantityText);
+                final int[] quantity_after_sale = {0};
+                String[] optionsArray = new String[quantity]; // Tạo một mảng chuỗi với kích thước bằng với số lượng
+                for (int i = 0; i < quantity; i++) {
+                    optionsArray[i] = String.valueOf(i + 1); // Điền mảng với các chuỗi số từ 1 đến quantity
                 }
+                AlertDialog.Builder builder = new AlertDialog.Builder(Delete_Custom_Activity.this);
+                builder.setTitle("Chọn số lượng đã bán")
+                        .setItems(optionsArray, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                String selectedOption = optionsArray[which];
+                                quantity_after_sale[0] = Integer.parseInt(selectedOption);
+                                ContentValues cv = new ContentValues();
+                                cv.put("quantity", quantity - quantity_after_sale[0]);
+                                String whereClause = "namePet = ?";
+                                String[] whereArgs = {id};
+                                sqLiteDatabase = database.getWritableDatabase();
+                                long redelete = sqLiteDatabase.update("pets", cv, whereClause, whereArgs);
+                                if(redelete != -1){
+                                    Intent it = new Intent(Delete_Custom_Activity.this, PetDetailActivity.class);
+                                    it.putExtra("title", title);
+                                    startActivity(it);
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "Không thể cập nhật", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
     }

@@ -79,6 +79,7 @@ public class PetDetailActivity extends AppCompatActivity {
                 item.put("line4", "Màu sắc: " + pet.getColor());
                 item.put("line5", "Số lượng: " + pet.getQuantity());
                 item.put("line6", "Giá: " + String.valueOf(pet.getPrice()) + "đ");
+                item.put("quantity", pet.getQuantity());
                 list_cat.add(item);
             } else if ("Chó".equals(otype)) {
                 item = new HashMap<String, Object>();
@@ -90,6 +91,7 @@ public class PetDetailActivity extends AppCompatActivity {
                 item.put("line4", "Màu sắc: " + pet.getColor());
                 item.put("line5", "Số lượng: " + pet.getQuantity());
                 item.put("line6", "Giá: " + String.valueOf(pet.getPrice()) + "đ");
+                item.put("quantity", pet.getQuantity());
                 list_dog.add(item);
             } else if ("Cá".equals(otype)) {
                 item = new HashMap<String, Object>();
@@ -101,6 +103,7 @@ public class PetDetailActivity extends AppCompatActivity {
                 item.put("line4", "Màu sắc: " + pet.getColor());
                 item.put("line5", "Số lượng: " + pet.getQuantity());
                 item.put("line6", "Giá: " + String.valueOf(pet.getPrice()) + "đ");
+                item.put("quantity", pet.getQuantity());
                 list_fish.add(item);
             }
         }
@@ -147,6 +150,7 @@ public class PetDetailActivity extends AppCompatActivity {
                     it.putExtra("text4", selectedItem.get("line4").toString());
                     it.putExtra("text5", selectedItem.get("line5").toString());
                     it.putExtra("PetPrice", selectedItem.get("line6").toString());
+                    it.putExtra("quantity", selectedItem.get("quantity").toString());
                     startActivity(it);
                 }
             });

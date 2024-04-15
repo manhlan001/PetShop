@@ -42,7 +42,7 @@ public class SignupActivity extends AppCompatActivity {
                 String password = edPassword.getText().toString();
                 String confirmpassword = edConfirmPassword.getText().toString();
                 Database db = new Database(getApplicationContext(), "PetShop", null, 1);
-                if(username.length() == 0 || email.length() == 0 || password.length() == 0 || confirmpassword.length() == 0){
+                if(username.isEmpty() || email.isEmpty() || password.isEmpty() || confirmpassword.isEmpty()){
                     Toast.makeText(getApplicationContext(), "Chưa nhập đầy đủ thông tin", Toast.LENGTH_LONG).show();
                 } else {
                     if(password.compareTo(confirmpassword) == 0){
