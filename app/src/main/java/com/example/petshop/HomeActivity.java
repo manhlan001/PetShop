@@ -43,6 +43,14 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        CardView nhanvien = findViewById(R.id.cardNhanVien);
+        nhanvien.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, EmployeeActivity.class));
+            }
+        });
+
         CardView changePassword = findViewById(R.id.cardChangePassword);
         changePassword.setOnClickListener(new View.OnClickListener() {
             @Override

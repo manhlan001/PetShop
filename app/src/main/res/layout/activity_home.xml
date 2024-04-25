@@ -138,7 +138,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardDonhang"
+            android:id="@+id/cardNhanVien"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="1"
@@ -161,13 +161,13 @@
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/donhang"
+                    android:src="@drawable/employee"
                     android:scaleType="fitCenter"/>
 
                 <TextView
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:text="Đơn hàng"
+                    android:text="Nhân viên"
                     android:textAlignment="center"
                     android:textColor="@color/purple"
                     android:textStyle="bold" />

@@ -23,11 +23,15 @@ public class Database extends SQLiteOpenHelper {
 
         String qry2 = "create table pets(imagePet blob, namePet text primary key, old text, sex text, color text, quantity int, price text, otype text)";
         db.execSQL(qry2);
+
+        String qry3 = "create table nhanvien(name text, old text, sex text, sdt text, gmail text, diachi text, chucvu text,date text, luong text)";
+        db.execSQL(qry3);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop Table if exists users");
         db.execSQL("drop Table if exists pets");
+        db.execSQL("drop Table if exists nhanvien");
     }
 
     public void Signup(String username, String email, String password){
@@ -102,5 +106,57 @@ public class Database extends SQLiteOpenHelper {
         }
         db.close();
         return petList;
+    }
+
+    public void AddNhanVien(String name, String old, String sex, String sdt, String gmail, String diachi, String chucvu,String date, String luong){
+        ContentValues cv = new ContentValues();
+        cv.put("name", name);
+        cv.put("old", old);
+        cv.put("sex", sex);
+        cv.put("sdt", sdt);
+        cv.put("gmail", gmail);
+        cv.put("diachi", diachi);
+        cv.put("chucvu", chucvu);
+        cv.put("date", date);
+        cv.put("luong", luong);
+        SQLiteDatabase db = getWritableDatabase();
+        db.insert("nhanvien", null, cv);
+        db.close();
+    }
+
+    public ArrayList<NhanVien> getAllNhanVien() {
+        ArrayList<NhanVien> NhanVienList = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM nhanvien", null);
+        if (cursor != null) {
+            int columnIndexName = cursor.getColumnIndex("name");
+            int columnIndexOld = cursor.getColumnIndex("old");
+            int columnIndexSex = cursor.getColumnIndex("sex");
+            int columnIndexSDT = cursor.getColumnIndex("sdt");
+            int columnIndexGmail = cursor.getColumnIndex("gmail");
+            int columnIndexDiaChi = cursor.getColumnIndex("diachi");
+            int columnIndexChucVu = cursor.getColumnIndex("chucvu");
+            int columnIndexDate = cursor.getColumnIndex("date");
+            int columnIndexLuong = cursor.getColumnIndex("luong");
+
+            while (cursor.moveToNext()) {
+                String name = cursor.getString(columnIndexName);
+                String old = cursor.getString(columnIndexOld);
+                String sex = cursor.getString(columnIndexSex);
+                String sdt = cursor.getString(columnIndexSDT);
+                String gmail = cursor.getString(columnIndexGmail);
+                String diachi = cursor.getString(columnIndexDiaChi);
+                String chucvu = cursor.getString(columnIndexChucVu);
+                String date = cursor.getString(columnIndexDate);
+                String luong = cursor.getString(columnIndexLuong);
+
+                NhanVien NhanVien = new NhanVien(name, old, sex, sdt, gmail, diachi, chucvu, date, luong);
+
+                NhanVienList.add(NhanVien);
+            }
+            cursor.close();
+        }
+        db.close();
+        return NhanVienList;
     }
 }

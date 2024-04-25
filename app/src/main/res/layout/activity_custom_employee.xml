@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CustomEmployeeActivity"
+    android:background="@drawable/back2">
+
+    <TextView
+        android:id="@+id/titleCustomEmployee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pet Shop"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"/>
+
+    <TextView
+        android:id="@+id/titleCustomEmployeeTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chỉnh sửa nhân viên"
+        android:textColor="@color/blue"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/titleCustomEmployee"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"/>
+
+    <TextView
+        android:id="@+id/nameCustomEmployee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:background="@drawable/input_bg"
+        android:inputType="text"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:textSize="24dp"
+        android:paddingLeft="20dp"
+        android:layout_below="@+id/titleCustomEmployeeTop"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"/>
+
+    <EditText
+        android:id="@+id/oldCustomEmployee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/input_bg"
+        android:ems="10"
+        android:inputType="text"
+        android:paddingLeft="20dp"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:hint="Ngày tháng năm sinh"
+        android:textSize="24dp"
+        android:layout_below="@+id/nameCustomEmployee"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"/>
+
+    <LinearLayout
+        android:id="@+id/sexCustomEmployee"
+        android:layout_width="fill_parent"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/oldCustomEmployee"
+        android:layout_margin="12dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input_bg"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:text="Giới tính"
+            android:textSize="20dp"
+            />
+
+        <Spinner
+            android:id="@+id/sexCustomEmployeeSpinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:background="@drawable/input_bg"
+            android:backgroundTint="#2196F3" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/SDTCustomEmployee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/input_bg"
+        android:ems="10"
+        android:inputType="text"
+        android:paddingLeft="20dp"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:hint="Số điện thoại"
+        android:textSize="24dp"
+        android:layout_below="@+id/sexCustomEmployee"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"/>
+
+    <EditText
+        android:id="@+id/GmailCustomEmployee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/input_bg"
+        android:ems="10"
+        android:inputType="text"
+        android:paddingLeft="20dp"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:hint="Gmail"
+        android:textSize="24dp"
+        android:layout_below="@+id/SDTCustomEmployee"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"/>
+
+    <EditText
+        android:id="@+id/DiaChiCustomEmployee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/input_bg"
+        android:ems="10"
+        android:inputType="text"
+        android:paddingLeft="20dp"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:hint="Địa chỉ"
+        android:textSize="24dp"
+        android:layout_below="@+id/GmailCustomEmployee"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"/>
+
+    <LinearLayout
+        android:id="@+id/ChucVuCustomEmployee"
+        android:layout_width="fill_parent"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/DiaChiCustomEmployee"
+        android:layout_margin="12dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:background="@drawable/input_bg"
+            android:gravity="center"
+            android:text="Chức vụ"
+            android:textSize="20dp"
+            />
+
+        <Spinner
+            android:id="@+id/ChucVuCustomSpinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:background="@drawable/input_bg"
+            android:backgroundTint="#2196F3" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Date"
+        android:layout_width="fill_parent"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ChucVuCustomEmployee"
+        android:layout_margin="12dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:background="@drawable/input_bg"
+            android:gravity="center"
+            android:text="Ngày vào làm"
+            android:textSize="20dp"
+            />
+
+        <TextView
+            android:id="@+id/DateCustomEmployee"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:background="@drawable/input_bg"
+            android:gravity="center"
+            android:text="24/04/2024"
+            android:textSize="20dp"
+            />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/LuongCustomEmployee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/input_bg"
+        android:ems="10"
+        android:inputType="number"
+        android:paddingLeft="20dp"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:hint="Lương"
+        android:textSize="24dp"
+        android:layout_below="@+id/Date"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"/>
+
+    <LinearLayout
+        android:id="@+id/buttonCustom"
+        android:layout_width="fill_parent"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LuongCustomEmployee"
+        android:layout_margin="12dp">
+
+        <Button
+            android:id="@+id/buttonCustomEmployee"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:text="Chỉnh sửa"
+            android:textSize="20dp"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:id="@+id/buttonCustomEmployeeBack"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:text="Quay lại"
+            android:textSize="20dp"
+            android:layout_centerHorizontal="true"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
