@@ -38,8 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     btn_login.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-            /*String username = edUsername.getText().toString();
+            String username = edUsername.getText().toString();
             String password = edPassword.getText().toString();
             Database db = new Database(getApplicationContext(), "PetShop", null, 1);
             if(username.isEmpty() || password.isEmpty()) {
@@ -55,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "Tài khoản hoặc mật khẩu không chính xác", Toast.LENGTH_LONG).show();
                 }
-            }*/
+            }
         }
     });
     btn_signup.setOnClickListener(new View.OnClickListener() {

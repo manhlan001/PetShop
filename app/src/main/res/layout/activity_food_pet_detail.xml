@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FoodPetDetailActivity"
+    android:background="@drawable/back2">
+
+    <TextView
+        android:id="@+id/titleFoodPetDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pet Shop"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"/>
+
+    <TextView
+        android:id="@+id/titleFoodPetDetailTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thức ăn hoặc phụ kiện"
+        android:textColor="@color/blue"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/titleFoodPetDetail"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"/>
+
+    <TextView
+        android:id="@+id/nameFoodPetDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:background="@drawable/input_bg"
+        android:fontFamily=""
+        android:inputType="text"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:textSize="24dp"
+        android:paddingLeft="20dp"
+        android:layout_below="@+id/titleFoodPetDetailTop"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"/>
+
+    <EditText
+        android:id="@+id/quantityFoodPetDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/input_bg"
+        android:ems="10"
+        android:inputType="number"
+        android:paddingLeft="20dp"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:textSize="24dp"
+        android:layout_below="@+id/nameFoodPetDetail"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"/>
+
+    <EditText
+        android:id="@+id/priceFoodPetDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/input_bg"
+        android:ems="10"
+        android:inputType="number"
+        android:paddingLeft="20dp"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:textSize="24dp"
+        android:layout_below="@+id/quantityFoodPetDetail"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"/>
+
+    <LinearLayout
+        android:id="@+id/buttonAdd"
+        android:layout_width="fill_parent"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/priceFoodPetDetail"
+        android:layout_margin="12dp">
+
+        <Button
+            android:id="@+id/buttonCustomFoodPet"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:text="Chỉnh sửa"
+            android:textSize="20dp"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:id="@+id/buttonDeleteFoodPetBack"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:text="Xóa"
+            android:textSize="20dp"
+            android:layout_centerHorizontal="true"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonFoodPetDetailBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quay lại"
+        android:textSize="20dp"
+        android:layout_below="@+id/buttonAdd"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

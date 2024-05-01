@@ -26,12 +26,16 @@ public class Database extends SQLiteOpenHelper {
 
         String qry3 = "create table nhanvien(name text, old text, sex text, sdt text, gmail text, diachi text, chucvu text,date text, luong text)";
         db.execSQL(qry3);
+
+        String qry4 = "create table foodpet(name text, quantity int, price text)";
+        db.execSQL(qry4);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop Table if exists users");
         db.execSQL("drop Table if exists pets");
         db.execSQL("drop Table if exists nhanvien");
+        db.execSQL("drop Table if exists foodpet");
     }
 
     public void Signup(String username, String email, String password){
@@ -158,5 +162,41 @@ public class Database extends SQLiteOpenHelper {
         }
         db.close();
         return NhanVienList;
+    }
+
+    public void AddFoodPet(String name, int quantity, float price){
+        ContentValues cv = new ContentValues();
+        cv.put("name", name);
+        cv.put("quantity", quantity);
+        cv.put("price", price);
+        SQLiteDatabase db = getWritableDatabase();
+        db.insert("foodpet", null, cv);
+        db.close();
+    }
+
+    public ArrayList<FoodPet> getAllFoodPet() {
+        ArrayList<FoodPet> FoodPetList = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM foodpet", null);
+        if (cursor != null) {
+            int columnIndexName = cursor.getColumnIndex("name");
+            int columnIndexQuantity = cursor.getColumnIndex("quantity");
+            int columnIndexPrice = cursor.getColumnIndex("price");
+
+            while (cursor.moveToNext()) {
+                String name = cursor.getString(columnIndexName);
+                String quantity = cursor.getString(columnIndexQuantity);
+                String price = cursor.getString(columnIndexPrice);
+
+                // Create a new Pet object from the current column data
+                FoodPet foodPet = new FoodPet(name, quantity, price);
+
+                // Add the pet to the list
+                FoodPetList.add(foodPet);
+            }
+            cursor.close();
+        }
+        db.close();
+        return FoodPetList;
     }
 }

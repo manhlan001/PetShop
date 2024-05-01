@@ -43,6 +43,14 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        CardView thucan = findViewById(R.id.cardFood);
+        thucan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, FoodActivity.class));
+            }
+        });
+
         CardView nhanvien = findViewById(R.id.cardNhanVien);
         nhanvien.setOnClickListener(new View.OnClickListener() {
             @Override

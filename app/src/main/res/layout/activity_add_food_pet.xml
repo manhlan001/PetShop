@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddFoodPetActivity"
+    android:background="@drawable/back2">
+
+    <TextView
+        android:id="@+id/titleAddFoodPet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pet Shop"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"/>
+
+    <TextView
+        android:id="@+id/titleAddFoodPetTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thêm thức ăn hoặc phụ kiện"
+        android:textColor="@color/blue"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/titleAddFoodPet"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"/>
+
+    <EditText
+        android:id="@+id/nameFoodPet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:background="@drawable/input_bg"
+        android:fontFamily=""
+        android:hint="Tên thức ăn hoặc phụ kiện"
+        android:inputType="text"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:textSize="24dp"
+        android:paddingLeft="20dp"
+        android:layout_below="@+id/titleAddFoodPetTop"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"/>
+
+    <EditText
+        android:id="@+id/quantityFoodPet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/input_bg"
+        android:ems="10"
+        android:inputType="number"
+        android:paddingLeft="20dp"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:hint="Số lượng"
+        android:textSize="24dp"
+        android:layout_below="@+id/nameFoodPet"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"/>
+
+    <EditText
+        android:id="@+id/priceFoodPet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/input_bg"
+        android:ems="10"
+        android:inputType="number"
+        android:paddingLeft="20dp"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:hint="Giá"
+        android:textSize="24dp"
+        android:layout_below="@+id/quantityFoodPet"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"/>
+
+    <LinearLayout
+        android:id="@+id/buttonAdd"
+        android:layout_width="fill_parent"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/priceFoodPet"
+        android:layout_margin="12dp">
+
+        <Button
+            android:id="@+id/buttonAddFoodPet"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:text="Thêm vào danh sách"
+            android:textSize="20dp"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:id="@+id/buttonAddFoodPetBack"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:text="Quay lại"
+            android:textSize="20dp"
+            android:layout_centerHorizontal="true"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

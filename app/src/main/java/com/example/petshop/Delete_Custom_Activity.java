@@ -28,7 +28,7 @@ public class Delete_Custom_Activity extends AppCompatActivity {
     SQLiteDatabase sqLiteDatabase;
     Database database;
     TextView text1, text2, text3, text4, text5, PetCost;
-    Button btn_back, btn_custom, btn_delete;
+    Button btn_back, btn_custom, btn_delete, btn_sale;
     ImageView image;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,7 @@ public class Delete_Custom_Activity extends AppCompatActivity {
         btn_back = findViewById(R.id.buttonBack);
         btn_delete = findViewById(R.id.buttonDelete);
         btn_custom = findViewById(R.id.buttonCustom);
+        btn_sale = findViewById(R.id.buttonSale);
 
         text1 = findViewById(R.id.text1);
         text2 = findViewById(R.id.text2);
@@ -54,7 +55,6 @@ public class Delete_Custom_Activity extends AppCompatActivity {
         String title = intent.getStringExtra("pet_title");
         String id = intent.getStringExtra("Id_pet");
         byte[] image_pet = intent.getByteArrayExtra("image");
-        assert image_pet != null;
         Bitmap bitmap = BitmapFactory.decodeByteArray(image_pet, 0, image_pet.length);
         image.setImageBitmap(bitmap);
         text1.setText(intent.getStringExtra("text1"));
@@ -90,7 +90,7 @@ public class Delete_Custom_Activity extends AppCompatActivity {
             }
         });
 
-        btn_delete.setOnClickListener(new View.OnClickListener() {
+        btn_sale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String quantityText = intent.getStringExtra("quantity");
@@ -123,6 +123,24 @@ public class Delete_Custom_Activity extends AppCompatActivity {
                         });
                 AlertDialog dialog = builder.create();
                 dialog.show();
+            }
+        });
+
+        btn_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sqLiteDatabase = database.getWritableDatabase();
+                String whereClause = "namePet = ?";
+                String[] whereArgs = {id};
+                long recustom = sqLiteDatabase.delete("pets", whereClause, whereArgs);
+                if(recustom != -1){
+                    Toast.makeText(getApplicationContext(), "Xóa thành công", Toast.LENGTH_LONG).show();
+                    Intent it = new Intent(Delete_Custom_Activity.this, PetDetailActivity.class);
+                    it.putExtra("title", title);
+                    startActivity(it);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Không cập nhật thành công", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
